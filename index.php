@@ -11,21 +11,23 @@ use \LINE\LINEBot\Event\MessageEvent;
 use \LINE\LINEBot\Event\MessageEvent\TextMessage;
 
 
-// クラスをインスタンス化
-$bot = new LineBotClass();
-// テキストを取得
-$text = $bot->get_text();
-// テキストメッセージを作成
-$bot->add_text_builder($text);
-// 返信実行
-$bot->reply();
 
 
 /**
  * ラインボットクラス
  */
-class LineBotClass extends LINEBot
-{
+class LineBotClass extends LINEBot {
+    
+    // クラスをインスタンス化
+    $bot = new LineBotClass();
+    // テキストを取得
+    $text = $bot->get_text();
+    // テキストメッセージを作成
+    $bot->add_text_builder($text);
+    // 返信実行
+    $bot->reply();
+
+    
     private $bot;
     private $reply_token;
     private $events;
