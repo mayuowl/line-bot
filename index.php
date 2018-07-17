@@ -16,7 +16,26 @@ $events = $bot->parseEventRequest(file_get_contents('php://input'),$signature);
 
 // 配列に格納された各イベントをループで処理
 foreach ($events as $event) {
-    // テキストを返信
-    $bot->replyText($event->getReplyToken(),'TextMessage');
+    // テキストを返信し次のイベントの処理へ
+    replyTextMessage($bot, $event->getReplyToken(), '頑張れ！');
 }
+
+/**
+     * テキスト返信
+     * @param  $bot         LINEBot
+     *         $replyToken  返信先 
+     *         $text        テキスト
+     */
+function replyTextMessage($bot, $replyToken, $text) {
+    // 返信を行いレスポンスを取得
+    // TextMessageBuilderの引数はテキスト
+    $response = $bot->replyMessage($replyToken, new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text));
+    
+    // レスポンスが異常な場合
+    if (!$response->isSucceeded()) {
+        // エラー内容を出力
+        error_log('Failed!'.$response->getHTTPStatus.''.$response->getRawBody());
+    }
+}
+
 ?>
