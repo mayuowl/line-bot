@@ -77,8 +77,8 @@ function replyButtonsTemplate($bot, $replyToken, $alternativeText, $title, $text
         new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder($title, $text, $arrAction));
     $response = $bot->replyMessage($replyToken, $builder);
     
-    if (!response->isSucceeded()) {
-        error_log('Failed!'.$response->getHTTPStatus.''.$response->getRawBody());
+    if (!$response->isSucceeded()) {
+        error_log('Failed!'. $response->getHTTPStatus.''.$response->getRawBody());
     }
 }
 
