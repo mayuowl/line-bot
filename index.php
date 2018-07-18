@@ -18,13 +18,10 @@ $events = $bot->parseEventRequest(file_get_contents('php://input'),$signature);
 // 代替テキスト
 $alternativeText = '元気になれる名言いうよ！ - 今日の気分を選んでね';
 
-// タイトル
-$title = '元気になれる名言いうよ！';
-
 // テキスト
 $text = '今日の気分を選んでね';
 
-$actions = new LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder('楽しい','happy');
+$actions = new LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder('楽しい','happy'),new LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder('悲しい','unhappy');
 
 // $actions2 = new LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder('悲しい','unhappy');
 
@@ -39,7 +36,7 @@ foreach ($events as $event) {
     $replyToken = $event->getReplyToken();
     
     // ボタンメッセージを返信
-    replyButtonsTemplate($bot, $replyToken, $alternativeText, $title, $text, $actions);
+    replyConfirmTemplate($bot, $replyToken, $alternativeText, $text, $actions);
 }
 
 /**
@@ -61,27 +58,26 @@ function replyTextMessage($bot, $replyToken, $text) {
  */
 
 /**
- * ボタンテンプレート返信
+ * Confirmテンプレート返信
  * @param  $bot              LINEBot
  *         $replyToken       返信先 
  *         $alternativeText  代替テキスト
- *         $title            タイトル
  *         $text             本文
  *         $actions          アクション
  */
-function replyButtonsTemplate($bot, $replyToken, $alternativeText, $title, $text, $actions) {
+function replyConfirmTemplate($bot, $replyToken, $alternativeText, $text, $actions) {
     
-    $arrAction = array();
+    $actionArray = array();
     foreach ($actions as $value) {
-        array_push($arrAction, $value);
+        array_push($actionArray, $value);
     } 
     
     $builder = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder($alternativeText,
-        new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder($title, $text, $arrAction));
+        new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ConfirmTemplateBuilder($text, $actionArray));
     $response = $bot->replyMessage($replyToken, $builder);
     
     if (!$response->isSucceeded()) {
-        error_log('Failed!'. $response->getHTTPStatus.''.$response->getRawBody());
+        error_log('Failed!'. $response->getHTTPStatus.' '.$response->getRawBody());
     }
 }
 
