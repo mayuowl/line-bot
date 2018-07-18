@@ -47,7 +47,6 @@ foreach ($events as $event) {
  * @param  $bot         LINEBot
  *         $replyToken  返信先 
  *         $text        テキスト
- */
 function replyTextMessage($bot, $replyToken, $text) {
     // 返信を行いレスポンスを取得
     // TextMessageBuilderの引数はテキスト
@@ -59,6 +58,7 @@ function replyTextMessage($bot, $replyToken, $text) {
         error_log('Failed!'.$response->getHTTPStatus.''.$response->getRawBody());
     }
 }
+ */
 
 /**
  * ボタンテンプレート返信
