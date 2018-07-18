@@ -29,7 +29,7 @@ $actions = new LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder('
 // 配列に格納された各イベントをループで処理
 foreach ($events as $event) {
     // テキストを返信し次のイベントの処理へ
-    replyTextMessage($bot, $event->getReplyToken(), '頑張れ！');
+    // replyTextMessage($bot, $event->getReplyToken(), '頑張れ！');
     
     // ボタンメッセージを返信
     replyButtonsTemplate($bot, $event->getReplyToken(), $alternativeText, $title, $text, $actions);
