@@ -14,6 +14,8 @@ $signature = $_SERVER['HTTP_' . \LINE\LINEBot\Constant\HTTPHeader::LINE_SIGNATUR
 // 署名が正当かチェック。正当であればリクエストをパースし配列へ
 $events = $bot->parseEventRequest(file_get_contents('php://input'),$signature);
 
+$replyToken = $event->getReplyToken();
+
 // 代替テキスト
 $alternativeText = '元気になれる名言いうよ！ - 今日の気分を選んでね';
 
@@ -36,7 +38,7 @@ foreach ($events as $event) {
     // replyTextMessage($bot, $event->getReplyToken(), '頑張れ！');
     
     // ボタンメッセージを返信
-    replyButtonsTemplate($bot, $event->getReplyToken(), $alternativeText, $title, $text, $actions1, $actions2, $actions3);
+    replyButtonsTemplate($bot, $replyToken, $alternativeText, $title, $text, $actions1, $actions2, $actions3);
 }
 
 /**
