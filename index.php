@@ -69,7 +69,7 @@ function replyTextMessage($bot, $replyToken, $text) {
  *         $text             本文
  *         $actions          アクション
  */
-function replyButtonsTemplate($bot, $replyToken, $alternativeText, $title, $text, $actions1, $actions2, $actions3) {
+function replyButtonsTemplate($bot, $replyToken, $alternativeText, $title, $text, $actions) {
     
     $arrAction = array();
     foreach ($actions as $value) {
