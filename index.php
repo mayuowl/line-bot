@@ -16,10 +16,10 @@ $events = $bot->parseEventRequest(file_get_contents('php://input'),$signature);
 
 
 // 代替テキスト
-$alternativeText = '元気になれる名言いうよ！ - 今日の気分を選んでね';
+// $alternativeText = '元気になれる名言いうよ！ - 今日の気分を選んでね';
 
 // テキスト
-$text = '今日の気分を選んでね';
+// $text = '今日の気分を選んでね';
 
 
 // $actions2 = new LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder('悲しい','unhappy');
@@ -32,10 +32,15 @@ foreach ($events as $event) {
     // テキストを返信し次のイベントの処理へ
     // replyTextMessage($bot, $event->getReplyToken(), '頑張れ！');
     
-    $replyToken = $event->getReplyToken();
+    // $replyToken = $event->getReplyToken();
     
     // ボタンメッセージを返信
-    replyConfirmTemplate($bot, $replyToken, $alternativeText, $text, new LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder('楽しい','happy'),new LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder('悲しい','unhappy'));
+    replyConfirmTemplate($bot, 
+　　　　　　　　　　　　　　$event->getReplyToken(),
+　　　　　　　　　　　　　　'元気になれる名言いうよ！ - 今日の気分を選んでね',
+　　　　　　　　　　　　　　'今日の気分を選んでね',
+　　　　　　　　　　　　　　new LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder('楽しい','happy'),
+　　　　　　　　　　　　　　new LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder('悲しい','unhappy'));
 }
 
 /**
