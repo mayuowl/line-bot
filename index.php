@@ -32,15 +32,15 @@ foreach ($events as $event) {
     // テキストを返信し次のイベントの処理へ
     // replyTextMessage($bot, $event->getReplyToken(), '頑張れ！');
     
-    $replyToken = $event->getReplyToken();
+    // $replyToken = $event->getReplyToken();
     
     // ボタンメッセージを返信
     replyConfirmTemplate($bot,
-　　　　　　　　　　　　　　$replyToken,
+　　　　　　　　　　　　　　$event->getReplyToken(),
 　　　　　　　　　　　　　　'元気になれる名言いうよ！ - 今日の気分を選んでね',
 　　　　　　　　　　　　　　'今日の気分を選んでね',
-　　　　　　　　　　　　　　new LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder('楽しい','happy'),
-　　　　　　　　　　　　　　new LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder('悲しい','unhappy')
+　　　　　　　　　　　　　　new LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder('楽しい','http://google.jp'),
+　　　　　　　　　　　　　　new LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder('悲しい','ignore')
     );
 }
 
