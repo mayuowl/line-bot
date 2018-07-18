@@ -24,11 +24,11 @@ $title = '元気になれる名言いうよ！';
 // テキスト
 $text = '今日の気分を選んでね';
 
-$actions1 = new LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder('楽しい','happy');
+$actions = new LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder('楽しい','happy');
 
-$actions2 = new LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder('悲しい','unhappy');
+// $actions2 = new LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder('悲しい','unhappy');
 
-$actions3 = new LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder('イライラ','ugry');
+// $actions3 = new LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder('イライラ','ugry');
 
 
 // 配列に格納された各イベントをループで処理
@@ -39,7 +39,7 @@ foreach ($events as $event) {
     $replyToken = $event->getReplyToken();
     
     // ボタンメッセージを返信
-    replyButtonsTemplate($bot, $replyToken, $alternativeText, $title, $text, $actions1, $actions2, $actions3);
+    replyButtonsTemplate($bot, $replyToken, $alternativeText, $title, $text, $actions);
 }
 
 /**
