@@ -46,8 +46,8 @@ class LineBotClass extends LINEBot
 
 	function __construct($default=true)
 	{
-		$accessToken = I4DUva3zqGl3FPqr+GczGkw5m7kozWBB+mV5IGQEgRix810iNudegfBB2Keps5Xin/hOM4IIe4DPAQXj7GFLS0rmx2coAxwJBjyyY+dEtJgs2pTbDKMVCgU83DHQYN8/Koh8g15HsmSaiAmmj+2dHAdB04t89/1O/w1cDnyilFU=; // アクセストークン
-		$channelSecret = 7a03d02427cd3dcac4e9ee14d40605c5; // シークレット
+		$accessToken = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(getenv('LINE_CHANNEL_TOKEN')); // アクセストークン
+		$channelSecret = new \LINE\LINEBot($httpClient,['channelSecret' => getenv('LINE_CHANNEL_SECRET')]); // シークレット
 
 		// アクセストークンでCurlHTTPClientをインスタンス化
 		$http_client = new CurlHTTPClient($accessToken);
