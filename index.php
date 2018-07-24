@@ -30,18 +30,18 @@ $events = $bot->parseEventRequest(file_get_contents('php://input'),$signature);
 // 配列に格納された各イベントをループで処理
 foreach ($events as $event) {
     // テキストを返信し次のイベントの処理へ
-    // replyTextMessage($bot, $event->getReplyToken(), '頑張れ！');
+    replyTextMessage($bot, $event->getReplyToken(), '頑張れ！');
     
     // $replyToken = $event->getReplyToken();
     
     // ボタンメッセージを返信
-    replyConfirmTemplate($bot,
-　　　　　　　　　　　　　　$event->getReplyToken(),
-　　　　　　　　　　　　　　'元気になれる名言いうよ！ - 今日の気分を選んでね',
-　　　　　　　　　　　　　　'今日の気分を選んでね',
-　　　　　　　　　　　　　　new LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder('楽しい','http://google.jp'),
-　　　　　　　　　　　　　　new LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder('悲しい','ignore')
-    );
+//     replyConfirmTemplate($bot,
+// 　　　　　　　　　　　　　　$event->getReplyToken(),
+// 　　　　　　　　　　　　　　'元気になれる名言いうよ！ - 今日の気分を選んでね',
+// 　　　　　　　　　　　　　　'今日の気分を選んでね',
+// 　　　　　　　　　　　　　　new LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder('楽しい','http://google.jp'),
+// 　　　　　　　　　　　　　　new LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder('悲しい','ignore')
+//     );
 }
 
 /**
@@ -49,6 +49,7 @@ foreach ($events as $event) {
  * @param  $bot         LINEBot
  *         $replyToken  返信先 
  *         $text        テキスト
+ */
 function replyTextMessage($bot, $replyToken, $text) {
     // 返信を行いレスポンスを取得
     // TextMessageBuilderの引数はテキスト
@@ -60,7 +61,6 @@ function replyTextMessage($bot, $replyToken, $text) {
         error_log('Failed!'.$response->getHTTPStatus.''.$response->getRawBody());
     }
 }
- */
 
 /**
  * Confirmテンプレート返信
