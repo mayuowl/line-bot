@@ -69,7 +69,6 @@ function replyTextMessage($bot, $replyToken, $text) {
  *         $alternativeText  代替テキスト
  *         $text             本文
  *         $actions          アクション
- */
 function replyConfirmTemplate($bot, $replyToken, $alternativeText, $text, $actions) {
     
     $actionArray = array();
@@ -85,6 +84,7 @@ function replyConfirmTemplate($bot, $replyToken, $alternativeText, $text, $actio
         error_log('Failed!'. $response->getHTTPStatus.' '.$response->getRawBody());
     }
 }
+ */
 
 
 
